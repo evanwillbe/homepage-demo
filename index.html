@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>张一帆 · 个人主页</title>
+<meta name="description" content="张一帆 — 复旦大学国际商务硕士在读，本科毕业于上海外国语大学朝鲜语专业。关注公关传播、跨文化沟通与海外市场。">
+<style>
+  :root{
+    --ink:#12211f;
+    --ink-2:#3c4a48;
+    --muted:#6c7a78;
+    --faint:#95a3a1;
+    --paper:#fbfaf7;
+    --card:#ffffff;
+    --mint:#d9e9e5;
+    --mint-soft:#eef5f3;
+    --accent:#0e5f58;
+    --accent-soft:#3f8f87;
+    --line:#e6e2db;
+    --line-2:#efece6;
+    --serif:"Songti SC","Noto Serif SC","Source Han Serif SC","Source Han Serif CN",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+    --maxw:940px;
+    --radius:14px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  ::selection{background:var(--mint);color:var(--ink)}
+
+  a{color:inherit;text-decoration:none}
+
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ---------- 顶部导航 ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:saturate(180%) blur(14px);
+    -webkit-backdrop-filter:saturate(180%) blur(14px);
+    background:rgba(251,250,247,.82);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  .nav.stuck{border-bottom-color:var(--line);box-shadow:0 1px 20px rgba(18,33,31,.04)}
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;gap:20px;
+  }
+  .brand{
+    font-family:var(--serif);font-size:17px;font-weight:700;
+    letter-spacing:.06em;white-space:nowrap;
+  }
+  .brand span{color:var(--accent)}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{
+    font-size:14px;color:var(--muted);letter-spacing:.04em;
+    padding:4px 0;position:relative;transition:color .2s ease;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
+    background:var(--accent);transition:right .28s cubic-bezier(.4,0,.2,1);
+  }
+  .nav-links a:hover,.nav-links a.active{color:var(--accent)}
+  .nav-links a:hover::after,.nav-links a.active::after{right:0}
+  .nav-mail{
+    font-size:13.5px;color:var(--accent);
+    border:1px solid var(--mint);background:var(--mint-soft);
+    padding:6px 14px;border-radius:100px;
+    transition:background .2s ease,border-color .2s ease;
+  }
+  .nav-mail:hover{background:var(--mint);border-color:var(--accent-soft)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:76px 0 0;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:-30% -20% auto -20%;height:640px;
+    background:
+      radial-gradient(ellipse 55% 60% at 78% 34%, rgba(217,233,229,.95), transparent 68%),
+      radial-gradient(ellipse 45% 50% at 12% 6%, rgba(238,245,243,.9), transparent 70%);
+    pointer-events:none;z-index:0;
+  }
+  .hero-inner{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:1fr 264px;
+    gap:56px;align-items:center;
+    padding-bottom:60px;
+  }
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent-soft);font-weight:600;margin-bottom:20px;
+  }
+  .eyebrow::before{
+    content:"";width:26px;height:1px;background:var(--accent-soft);opacity:.55;
+  }
+
+  h1{
+    font-family:var(--serif);
+    font-size:clamp(42px,7vw,64px);
+    line-height:1.08;
+    letter-spacing:.04em;
+    margin:0 0 6px;font-weight:700;
+  }
+  .name-latin{
+    font-family:var(--serif);
+    font-size:14px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--faint);margin:0 0 24px;
+  }
+  .tagline{
+    font-size:17px;color:var(--ink-2);margin:0 0 34px;
+    line-height:1.8;max-width:34em;
+  }
+  .tagline b{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mint)}
+
+  .contact{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:13.5px;color:var(--ink-2);
+    background:var(--card);border:1px solid var(--line);
+    padding:7px 15px;border-radius:100px;
+    transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,color .2s ease;
+  }
+  .chip:hover{
+    transform:translateY(-1px);border-color:var(--mint);
+    color:var(--accent);box-shadow:0 6px 18px rgba(18,33,31,.06);
+  }
+  .chip svg{width:14px;height:14px;flex:none;opacity:.6}
+
+  .portrait{
+    position:relative;
+    border-radius:calc(var(--radius) + 6px);
+    overflow:hidden;
+    background:linear-gradient(160deg,var(--mint),#c3dcda);
+    box-shadow:0 18px 46px -18px rgba(14,95,88,.34), 0 2px 8px rgba(18,33,31,.05);
+    aspect-ratio:3/4;
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+  .portrait::after{
+    content:"";position:absolute;inset:0;
+    border-radius:inherit;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);
+    pointer-events:none;
+  }
+
+  /* ---------- 数据条 ---------- */
+  .stats{
+    position:relative;z-index:1;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:rgba(255,255,255,.5);
+  }
+  .stats-inner{
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .stat{
+    padding:26px 22px;
+    border-left:1px solid var(--line-2);
+  }
+  .stat:first-child{border-left:none;padding-left:0}
+  .stat-num{
+    font-family:var(--serif);
+    font-size:29px;line-height:1.1;color:var(--accent);
+    letter-spacing:.01em;
+  }
+  .stat-num small{font-size:15px;color:var(--faint);margin-left:2px;letter-spacing:0}
+  .stat-label{
+    font-size:12.5px;color:var(--muted);margin-top:7px;letter-spacing:.06em;
+  }
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:76px 0}
+  section + section{border-top:1px solid var(--line-2)}
+
+  .sec-head{margin-bottom:40px}
+  .sec-title{
+    font-family:var(--serif);
+    font-size:clamp(25px,3.4vw,31px);
+    letter-spacing:.05em;margin:0;font-weight:700;line-height:1.3;
+  }
+  .sec-sub{
+    font-size:14.5px;color:var(--muted);margin:11px 0 0;max-width:46em;
+  }
+
+  /* ---------- 关于 ---------- */
+  .about-grid{
+    display:grid;grid-template-columns:1.45fr 1fr;gap:48px;align-items:start;
+  }
+  .about-text p{margin:0 0 17px;color:var(--ink-2);font-size:15.5px}
+  .about-text p:last-child{margin-bottom:0}
+  .about-text strong{color:var(--ink);font-weight:600}
+
+  .focus-card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:26px 26px 24px;
+  }
+  .focus-card h3{
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent-soft);margin:0 0 18px;font-weight:600;
+  }
+  .focus-list{list-style:none;margin:0;padding:0;display:grid;gap:15px}
+  .focus-list li{display:flex;gap:12px;font-size:14.5px;color:var(--ink-2);line-height:1.55}
+  .focus-list .dot{
+    flex:none;width:6px;height:6px;border-radius:50%;
+    background:var(--mint);border:1.5px solid var(--accent-soft);
+    margin-top:9px;
+  }
+
+  /* ---------- 时间线 ---------- */
+  .timeline{position:relative;padding-left:26px}
+  .timeline::before{
+    content:"";position:absolute;left:3px;top:9px;bottom:9px;width:1px;
+    background:linear-gradient(to bottom,var(--line),var(--line-2));
+  }
+  .tl-item{position:relative;padding-bottom:38px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{
+    content:"";position:absolute;left:-26px;top:9px;
+    width:7px;height:7px;border-radius:50%;
+    background:var(--paper);border:1.5px solid var(--accent-soft);
+    transition:background .25s ease,transform .25s ease;
+  }
+  .tl-item:hover::before{background:var(--accent);transform:scale(1.25)}
+  /* 当前进行中的条目 */
+  .tl-item.now::before{
+    background:var(--accent);border-color:var(--accent);
+    box-shadow:0 0 0 4px var(--mint-soft);
+  }
+  .tl-now{
+    font-size:11.5px;letter-spacing:.14em;color:#fff;
+    background:var(--accent);padding:2px 10px;border-radius:100px;
+    white-space:nowrap;
+  }
+
+  .tl-head{
+    display:flex;flex-wrap:wrap;align-items:baseline;
+    gap:10px 14px;margin-bottom:9px;
+  }
+  .tl-org{font-size:17.5px;font-weight:600;letter-spacing:.02em}
+  .tl-role{
+    font-size:13.5px;color:var(--accent);
+    background:var(--mint-soft);border:1px solid var(--mint);
+    padding:2px 11px;border-radius:100px;white-space:nowrap;
+  }
+  .tl-date{
+    margin-left:auto;font-size:13px;color:var(--faint);
+    font-variant-numeric:tabular-nums;letter-spacing:.04em;white-space:nowrap;
+  }
+  .tl-body{display:grid;gap:9px}
+  .tl-body p{
+    margin:0;font-size:14.8px;color:var(--muted);line-height:1.72;
+    padding-left:16px;position:relative;
+  }
+  .tl-body p::before{
+    content:"";position:absolute;left:2px;top:11px;
+    width:4px;height:1px;background:var(--faint);
+  }
+  .tl-body b{color:var(--ink-2);font-weight:600}
+
+  /* ---------- 实践小卡 ---------- */
+  .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .mini{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:23px 24px;
+    transition:transform .25s cubic-bezier(.4,0,.2,1),box-shadow .25s ease,border-color .25s ease;
+  }
+  .mini:hover{
+    transform:translateY(-3px);
+    border-color:var(--mint);
+    box-shadow:0 14px 34px -16px rgba(14,95,88,.28);
+  }
+  .mini-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:5px}
+  .mini-org{font-size:16px;font-weight:600;letter-spacing:.02em}
+  .mini-date{font-size:12.5px;color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .mini-role{font-size:13px;color:var(--accent-soft);margin-bottom:11px;letter-spacing:.03em}
+  .mini-text{margin:0;font-size:14px;color:var(--muted);line-height:1.7}
+
+  /* ---------- 能力 ---------- */
+  .skills-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:start}
+
+  .lang{display:grid;gap:22px}
+  .lang-item{
+    display:grid;grid-template-columns:1fr auto;
+    gap:5px 14px;align-items:baseline;
+  }
+  .lang-name{font-size:16px;font-weight:600;letter-spacing:.03em}
+  .lang-cred{font-size:13px;color:var(--muted);grid-column:1;line-height:1.5}
+  .lang-tag{
+    grid-column:2;grid-row:1;font-size:12px;color:var(--accent-soft);
+    letter-spacing:.08em;
+  }
+  .bars{grid-column:1/-1;display:flex;gap:4px;margin-top:9px}
+  .bars i{
+    height:3px;flex:1;border-radius:2px;background:var(--line);
+  }
+  .bars i.on{background:var(--accent-soft)}
+
+  .tools h3{
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent-soft);margin:0 0 14px;font-weight:600;
+  }
+  .tools h3 + .tags{margin-bottom:26px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{
+    font-size:13.5px;color:var(--ink-2);
+    background:var(--card);border:1px solid var(--line);
+    padding:6px 14px;border-radius:8px;
+    transition:border-color .2s ease,color .2s ease,background .2s ease;
+  }
+  .tag:hover{border-color:var(--mint);color:var(--accent);background:var(--mint-soft)}
+
+  /* ---------- 页脚 ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    background:linear-gradient(to bottom,transparent,rgba(238,245,243,.6));
+    padding:52px 0 44px;
+  }
+  .foot-inner{
+    display:flex;flex-wrap:wrap;gap:22px;
+    justify-content:space-between;align-items:flex-end;
+  }
+  .foot-name{
+    font-family:var(--serif);font-size:22px;letter-spacing:.08em;font-weight:700;
+  }
+  .foot-sub{font-size:13px;color:var(--faint);margin-top:6px;letter-spacing:.03em}
+  .foot-links{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* ---------- 入场动画 ---------- */
+  .reveal{
+    opacity:0;transform:translateY(16px);
+    transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:860px){
+    .hero-inner{grid-template-columns:1fr;gap:34px}
+    .portrait{max-width:230px;order:-1}
+    .about-grid,.skills-grid{grid-template-columns:1fr;gap:34px}
+    .nav-links{display:none}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 20px}
+    .hero{padding-top:52px}
+    .hero-inner{padding-bottom:44px}
+    section{padding:58px 0}
+    .stats-inner{grid-template-columns:repeat(2,1fr)}
+    .stat{padding:20px 16px}
+    .stat:first-child{padding-left:0}
+    .stat:nth-child(odd){border-left:none;padding-left:0}
+    .stat:nth-child(n+3){border-top:1px solid var(--line-2)}
+    .card-grid{grid-template-columns:1fr}
+    .tl-date{margin-left:0;width:100%}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    *{transition-duration:.01ms !important}
+  }
+
+  @media print{
+    .nav,.hero::before{display:none}
+    body{background:#fff}
+    section{padding:26px 0;break-inside:avoid}
+    .reveal{opacity:1;transform:none}
+    .mini,.focus-card,.portrait{box-shadow:none}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">张一帆 <span>·</span> Yifan Zhang</a>
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#education">教育</a>
+      <a href="#experience">实习</a>
+      <a href="#practice">实践</a>
+      <a href="#skills">能力</a>
+    </div>
+    <a href="mailto:evan626@126.com" class="nav-mail">联系我</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div>
+      <p class="eyebrow">个人主页</p>
+      <h1>张一帆</h1>
+      <p class="name-latin">Yifan Zhang</p>
+      <p class="tagline">
+        复旦大学 <b>国际商务</b> 硕士在读 · 上海外国语大学 <b>朝鲜语</b> 本科<br>
+        关注公关传播、海外市场与跨文化沟通
+      </p>
+      <div class="contact">
+        <a class="chip" href="mailto:evan626@126.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          evan626@126.com
+        </a>
+        <span class="chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 21l1.9-4.9A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4Z"/></svg>
+          微信 summeronthecoast03
+        </span>
+        <span class="chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          上海
+        </span>
+      </div>
+    </div>
+    <figure class="portrait" style="margin:0">
+      <img src="assets/portrait.jpg" alt="张一帆个人照" width="720" height="960">
+    </figure>
+  </div>
+
+  <div class="stats">
+    <div class="wrap stats-inner">
+      <div class="stat">
+        <div class="stat-num">3.87<small>/4.00</small></div>
+        <div class="stat-label">本科 GPA · 专业前 15%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8<small> 次</small></div>
+        <div class="stat-label">奖学金 · 校优秀学生</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3<small> 段</small></div>
+        <div class="stat-label">实习 · 公关 / 海外销售 / 教学</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">12<small> 人</small></div>
+        <div class="stat-label">独立组建支教团队并带队</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 class="sec-title">关于我</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          我本科毕业于上海外国语大学朝鲜语专业，2024 年春季学期在<strong>韩国外国语大学</strong>交换，
+          把课堂上的语言真正放进了生活里；2026 年 9 月起在<strong>复旦大学</strong>攻读国际商务硕士。
+        </p>
+        <p>
+          三段实习横跨不同方向：在公关公司做汽车行业的<strong>竞品研究与传播数据分析</strong>，
+          在货代公司做拉美市场的<strong>海外客户开发</strong>，也在中学讲过一学期韩语课。
+          看起来分散，但内核都是同一件事——<strong>理解一个陌生的语境，然后找到合适的表达方式</strong>。
+        </p>
+        <p>
+          我也做了四年的团队组织者：从零开始招募、面试、组建 12 人的支教队并对接地方团委，
+          带过院排球队，也在学院行政办公室做过助理组组长。比起单打独斗，我更擅长把事情和人组织起来。
+        </p>
+      </div>
+      <aside class="focus-card reveal">
+        <h3>关注方向</h3>
+        <ul class="focus-list">
+          <li><span class="dot"></span><span>公关传播与品牌内容</span></li>
+          <li><span class="dot"></span><span>海外市场与跨文化沟通</span></li>
+          <li><span class="dot"></span><span>行业研究与传播数据分析</span></li>
+          <li><span class="dot"></span><span>中韩英三语环境下的协作</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 class="sec-title">教育背景</h2>
+    </div>
+    <div class="timeline">
+      <article class="tl-item now reveal">
+        <div class="tl-head">
+          <span class="tl-org">复旦大学</span>
+          <span class="tl-role">国际商务（硕士）</span>
+          <span class="tl-now">在读</span>
+          <span class="tl-date">2026.09 – 2028.06</span>
+        </div>
+      </article>
+      <article class="tl-item reveal">
+        <div class="tl-head">
+          <span class="tl-org">上海外国语大学</span>
+          <span class="tl-role">朝鲜语（本科）</span>
+          <span class="tl-date">2021.09 – 2026.06</span>
+        </div>
+        <div class="tl-body">
+          <p><b>学业表现</b>　本科 GPA 3.87 / 4.00，专业前 15%。</p>
+          <p><b>获奖经历</b>　2022–2023 学年校优秀学生；累计获校内奖学金 8 次；「国士杯」英语朗诵比赛一等奖（全校第二）；学院明星干事。</p>
+        </div>
+      </article>
+      <article class="tl-item reveal">
+        <div class="tl-head">
+          <span class="tl-org">韩国外国语大学</span>
+          <span class="tl-role">交换项目</span>
+          <span class="tl-date">2024.02 – 2024.06</span>
+        </div>
+        <div class="tl-body">
+          <p>一学期交换学习，在全韩语环境中完成课程，并实地接触韩国社会与文化语境。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 class="sec-title">实习经历</h2>
+      <p class="sec-sub">从公关传播到海外销售再到语言教学，三段经历各自补上了不同的一块。</p>
+    </div>
+    <div class="timeline">
+      <article class="tl-item reveal">
+        <div class="tl-head">
+          <span class="tl-org">上海朗知传媒</span>
+          <span class="tl-role">创新公关实习生</span>
+          <span class="tl-date">2026.04 – 2026.07</span>
+        </div>
+        <div class="tl-body">
+          <p><b>汽车行业公关</b>　参与博世、倍耐力等汽车产业客户的公关项目，负责行业与竞品研究、媒体监测及传播数据分析。</p>
+          <p><b>项目执行</b>　参与巴黎车展等热点节点与品牌传播项目，开展海外市场、车型及智能驾驶相关信息调研，协助整理新闻稿件、社媒内容等传播材料。</p>
+        </div>
+      </article>
+      <article class="tl-item reveal">
+        <div class="tl-head">
+          <span class="tl-org">上海立远国际物流</span>
+          <span class="tl-role">海外销售实习生</span>
+          <span class="tl-date">2024.07 – 2024.08</span>
+        </div>
+        <div class="tl-body">
+          <p><b>海外客户开发</b>　参与拉美市场客户开发，筛选厄瓜多尔等国家的潜在客户，通过英文邮件推广海运舱位资源。</p>
+          <p><b>业务流程支持</b>　协助整理客户资料与客户触达记录，参与国际货代前端业务流程。</p>
+        </div>
+      </article>
+      <article class="tl-item reveal">
+        <div class="tl-head">
+          <span class="tl-org">松江外国语学校</span>
+          <span class="tl-role">韩语实习教师</span>
+          <span class="tl-date">2023.03 – 2023.06</span>
+        </div>
+        <div class="tl-body">
+          <p><b>课程教学</b>　面向六年级学生开展每周拓展课程，教授韩语入门及朝鲜半岛历史文化知识。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="practice">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 class="sec-title">实践与领导力</h2>
+      <p class="sec-sub">四年里带过队伍、办过活动、讲过课，也做过最琐碎的会务支持。</p>
+    </div>
+    <div class="card-grid">
+      <article class="mini reveal">
+        <div class="mini-top">
+          <span class="mini-org">上外萤光支教队</span>
+          <span class="mini-date">2023.03 – 2023.07</span>
+        </div>
+        <div class="mini-role">队长</div>
+        <p class="mini-text">
+          独立完成简历筛选与成员面试，组建 12 人团队并划分职能；对接安徽旌德县团委，
+          统筹支教日程、选址、课表与开闭幕式；运营「SISU 萤光支教队」公众号负责线上宣传。
+        </p>
+      </article>
+      <article class="mini reveal">
+        <div class="mini-top">
+          <span class="mini-org">上外东方语学院排球队</span>
+          <span class="mini-date">2024.09 – 2025.06</span>
+        </div>
+        <div class="mini-role">队长</div>
+        <p class="mini-text">
+          负责日常训练安排、队员协调与相关事务对接，保障球队稳定运转；
+          协助比赛准备与赛场分工，在团队活动中持续锻炼组织协调与配合能力。
+        </p>
+      </article>
+      <article class="mini reveal">
+        <div class="mini-top">
+          <span class="mini-org">中国国际进口博览会</span>
+          <span class="mini-date">2024.10 – 2024.11</span>
+        </div>
+        <div class="mini-role">展会志愿者 · 韩国馆</div>
+        <p class="mini-text">
+          参与韩国馆现场接待、来宾引导及基础服务，协助保障展馆有序运行；
+          配合完成馆内文字材料检查、现场沟通支持与会务执行工作。
+        </p>
+      </article>
+      <article class="mini reveal">
+        <div class="mini-top">
+          <span class="mini-org">上外行政办公室</span>
+          <span class="mini-date">2022.09 – 2024.02</span>
+        </div>
+        <div class="mini-role">助理组 · 组长</div>
+        <p class="mini-text">
+          统筹学院活动支持及成员分工，协助活动执行、文书处理与宣传材料制作，任期一年半。
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 class="sec-title">语言与技能</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="lang reveal">
+        <div class="lang-item">
+          <span class="lang-name">英语</span>
+          <span class="lang-tag">CET-6 · 专八</span>
+          <span class="lang-cred">大学英语六级 627 分，英语专业八级</span>
+          <div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">韩语</span>
+          <span class="lang-tag">专四</span>
+          <span class="lang-cred">朝鲜语专业四级，韩国外国语大学交换一学期</span>
+          <div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">西班牙语</span>
+          <span class="lang-tag">学习中</span>
+          <span class="lang-cred">日常学习中，可支撑基础沟通与阅读</span>
+          <div class="bars"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+
+      <div class="tools reveal">
+        <h3>数据处理与编程</h3>
+        <div class="tags">
+          <span class="tag">Python · 爬虫</span>
+          <span class="tag">数据分析与可视化</span>
+          <span class="tag">Excel · 数据透视表</span>
+          <span class="tag">Excel · VLOOKUP</span>
+          <span class="tag">R · 基础语法</span>
+          <span class="tag">C · 基础语法</span>
+        </div>
+        <h3>内容与办公</h3>
+        <div class="tags">
+          <span class="tag">媒体监测</span>
+          <span class="tag">竞品研究</span>
+          <span class="tag">新闻稿整理</span>
+          <span class="tag">社媒内容</span>
+          <span class="tag">视频剪辑</span>
+          <span class="tag">公众号运营</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>
+      <div class="foot-name">张一帆</div>
+      <div class="foot-sub">复旦大学 · 国际商务硕士在读 · 上海外国语大学 朝鲜语本科</div>
+    </div>
+    <div class="foot-links">
+      <a class="chip" href="mailto:evan626@126.com">evan626@126.com</a>
+      <span class="chip">微信 summeronthecoast03</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 导航吸顶阴影
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('stuck', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // 入场动画
+  const items = document.querySelectorAll('.reveal');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = Math.min(i * 70, 210) + 'ms';
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {rootMargin: '0px 0px -8% 0px', threshold: 0.08});
+    items.forEach(el => io.observe(el));
+  }
+
+  // 导航高亮当前区块
+  const links = [...document.querySelectorAll('.nav-links a')];
+  const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, {rootMargin: '-45% 0px -50% 0px'});
+  sections.forEach(s => spy.observe(s));
+</script>
+
+</body>
+</html>
